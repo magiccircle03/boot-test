@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- interface의 full name을 namespace의 속성으로 사용 : 필수 -->
+<mapper namespace="com.weovercome.mapper.MemberMapper">
+
+	<!-- select 결과 메핑을 위한 resultMap 설정. 해주는 게 좀 더 안전함. 또 혹시 변경이 있을 때 이거만 바꿔주면 되니까! -->
+	<resultMap id="resultMemberInfo"
+		type="com.weovercome.domain.MemberInfo">
+		<id property="idx" column="idx" />
+		<result property="uId" column="uid" />
+		<result property="uPW" column="upw" />
+		<result property="uName" column="uname" />
+		<result property="uPhoto" column="uphoto" />
+		<result property="regDate" column="date" />
+		<!-- verify, code 추가 -->
+		<result property="verify" column="verify" />
+		<result property="code" column="code" />
+	</resultMap>
+
+	<!-- (파라미터타입은 기본형과 스트링일 땐 생략가능! 그리고 이름은 하나의 데이터를 가져올 땐 뭘해도 상관x) -->
+	<!-- 회원로그인 -->
+	<select id="selectMemberById" resultMap="resultMemberInfo">
+		select * from member
+		where uid=#{id}
+	</select>
+
+
+</mapper>
+
+
+ 
+ 
